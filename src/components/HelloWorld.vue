@@ -6,10 +6,20 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
+import { ProductionApi } from '@/api/commonApi'
 
 @Component
 export default class HelloWorld extends Vue {
-  @Prop() private msg!: string;
+  @Prop() private msg!: string
+  mounted () {
+    this.dataInit()
+  }
+
+  public dataInit () {
+    // ProductionApi.queryPager({}).then((res: object) => {
+    //   console.info(res)
+    // })
+  }
 }
 </script>
 
