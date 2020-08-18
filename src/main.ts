@@ -1,12 +1,12 @@
 import Vue from 'vue'
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 import App from './App.vue'
 import './registerServiceWorker'
 import routes from './router'
 import store from './store'
 import VueRouter from 'vue-router'
-import actions from "@/shared/actions";
+import actions from "@/shared/actions"
 // import axios from './axios'
 
 Vue.config.productionTip = false

@@ -1,7 +1,5 @@
 import * as axios from 'axios'
 import {AxiosResponse, AxiosRequestConfig} from 'axios'
-import {message} from 'ant-design-vue'
-
 
 const request = axios.default.create({
   baseURL: 'api',
@@ -14,7 +12,6 @@ request.interceptors.request.use(
     return config
   },
   (error: any) => {
-    message.error('加载超时')
     return Promise.reject(error)
   }
 )
@@ -25,7 +22,6 @@ request.interceptors.response.use(
   },
   (error: any) => {
     let msg: string = error.message
-    message.error(msg)
     return Promise.reject(error)
   }
 )
