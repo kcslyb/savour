@@ -1,14 +1,17 @@
 import Vue from 'vue'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 import App from './App.vue'
 import './registerServiceWorker'
 import routes from './router'
 import store from './store'
 import VueRouter from 'vue-router'
+import actions from "@/shared/actions";
 // import axios from './axios'
 
 Vue.config.productionTip = false
 
-// Vue.use(axios)
+Vue.use(ElementUI);
 Vue.use(VueRouter)
 
 let instance: any = null
@@ -21,6 +24,11 @@ declare const window: Window & any
  * 两种情况：主应用生命周期钩子中运行 / 微应用单独启动时运行
  */
 function render (prop: any = {}) {
+  if (prop) {
+    // 注入 actions 实例
+    actions.setActions(prop);
+  }
+
   // 在 render 中创建 VueRouter，可以保证在卸载微应用时，移除 location 事件监听，防止事件污染
   router = new VueRouter({
     // 运行在主应用中时，添加路由命名空间 /savour
@@ -33,7 +41,7 @@ function render (prop: any = {}) {
   instance = new Vue({
     store,
     router,
-    render: (h) => h(App)
+    render: (h: (arg0: any) => any) => h(App)
   }).$mount('#app')
 }
 

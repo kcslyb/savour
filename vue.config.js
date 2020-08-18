@@ -1,15 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path')
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const vConsolePlugin = require('vconsole-webpack-plugin')
+const ConsolePlugin = require('vconsole-webpack-plugin')
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const CompressionPlugin = require('compression-webpack-plugin') // Gzip
-
-const name = 'savour'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const packageName = require('./package.json').name
 
 module.exports = {
   publicPath: '/',
-  outputDir: 'dist',
+  outputDir: 'savour',
   // eslint-loader 是否在保存的时候检查
   lintOnSave: true,
   // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。
@@ -27,20 +27,13 @@ module.exports = {
     historyApiFallback: true,
     disableHostCheck: true,
     // 配置自动启动浏览器
-    open: true,
+    open: false,
     // 热更新
     hotOnly: true,
     headers: {
       'Access-Control-Allow-Origin': '*'
     },
-    proxy: process.env.NODE_ENV === 'production' ? {
-      '/api/*': {
-        target: 'http://127.0.0.1:8088',
-        changeOrigin: true,
-        secure: false,
-        ws: true// websocket支持
-      }
-    } : {
+    proxy: {
       '/api': {
         target: 'http://127.0.0.1:8088',
         ws: true,
@@ -80,8 +73,7 @@ module.exports = {
       })
     ]
     const pluginsDev = [
-      // eslint-disable-next-line new-cap
-      new vConsolePlugin({
+      new ConsolePlugin({
         filter: [], // 需要过滤的入口文件
         enable: false // 发布代码前记得改回 false
       })
@@ -100,11 +92,11 @@ module.exports = {
       },
       output: {
         // 微应用的包名，这里与主应用中注册的微应用名称一致
-        library: `${name}`,
+        library: `${packageName}`,
         // 将你的 library 暴露为所有的模块定义下都可运行的方式
         libraryTarget: 'umd',
         // 按需加载相关，设置为 webpackJsonp_VueMicroApp 即可
-        jsonpFunction: `webpackJsonp_${name}`
+        jsonpFunction: `webpackJsonp_${packageName}`
       }
     }
   },
