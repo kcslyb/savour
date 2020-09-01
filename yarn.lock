@@ -2551,6 +2551,22 @@ common-tags@^1.8.0:
   resolved "https://registry.npm.taobao.org/common-tags/download/common-tags-1.8.0.tgz#8e3153e542d4a39e9b10554434afaaf98956a937"
   integrity sha1-jjFT5ULUo56bEFVENK+q+YlWqTc=
 
+"common@git+https://kcslyb@github.com/kcslyb/common.git":
+  version "0.1.0"
+  uid "74455ba89ec1e3a2c49a0c5f0759413266c9c251"
+  resolved "git+https://kcslyb@github.com/kcslyb/common.git#74455ba89ec1e3a2c49a0c5f0759413266c9c251"
+  dependencies:
+    "@vue/babel-helper-vue-jsx-merge-props" "^1.0.0"
+    "@vue/babel-preset-jsx" "^1.1.2"
+    core-js "^3.6.5"
+    crypto-js "^4.0.0"
+    moment "^2.27.0"
+    register-service-worker "^1.7.1"
+    vue "^2.6.11"
+    vue-class-component "^7.2.5"
+    vue-property-decorator "^8.4.2"
+    vue-router "^3.2.0"
+
 commondir@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/commondir/download/commondir-1.0.1.tgz#ddd800da0c66127393cca5950ea968a3aaf1253b"
@@ -2812,6 +2828,11 @@ crypto-browserify@^3.11.0:
     public-encrypt "^4.0.0"
     randombytes "^2.0.0"
     randomfill "^1.0.3"
+
+crypto-js@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.0.0.tgz#2904ab2677a9d042856a2ea2ef80de92e4a36dcc"
+  integrity sha512-bzHZN8Pn+gS7DQA6n+iUmBfl0hO5DJq++QP3U6uTucDtk/0iGpXd/Gg7CGR0p8tJhofJyaKoWBuJI4eAO00BBg==
 
 css-color-names@0.0.4, css-color-names@^0.0.4:
   version "0.0.4"
@@ -5488,9 +5509,9 @@ lodash.uniq@^4.5.0:
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
 lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.3:
-  version "4.17.15"
-  resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
-  integrity sha1-tEf2ZwoEVbv+7dETku/zMOoJdUg=
+  version "4.17.20"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
+  integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
 
 log-symbols@^2.2.0:
   version "2.2.0"
@@ -8669,6 +8690,11 @@ vue-class-component@^7.1.0, vue-class-component@^7.2.3:
   version "7.2.3"
   resolved "https://registry.npm.taobao.org/vue-class-component/download/vue-class-component-7.2.3.tgz#a5b1abd53513a72ad51098752e2dedd499807cca"
   integrity sha1-pbGr1TUTpyrVEJh1Li3t1JmAfMo=
+
+vue-class-component@^7.2.5:
+  version "7.2.5"
+  resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-7.2.5.tgz#212b3548c4fdd3314774c4adbc1c3792a40b52d0"
+  integrity sha512-0CSftHY0bDTD+4FbYkuFf6+iKDjZ4h2in2YYJDRMk5daZIjrgT9LjFHvP7Rzqy9/s1pij3zDtTSLRUjsPWMwqg==
 
 vue-eslint-parser@^7.0.0:
   version "7.1.0"
