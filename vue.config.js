@@ -1,21 +1,18 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path')
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const ConsolePlugin = require('vconsole-webpack-plugin')
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const CompressionPlugin = require('compression-webpack-plugin') // Gzip
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageName = require('./package.json').name
 
+const isProduct = process.env.NODE_ENV === 'production'
+
 module.exports = {
-  publicPath: '/',
-  outputDir: 'savour',
+  outputDir: `${packageName}`,
   // eslint-loader 是否在保存的时候检查
   lintOnSave: true,
   // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。
-  assetsDir: 'static',
-  // 以多页模式构建应用程序。
-  pages: undefined,
+  // assetsDir: `${packageName}`,
   // 是否使用包含运行时编译器的 Vue 构建版本
   runtimeCompiler: false,
   // 生产环境是否生成 sourceMap 文件，一般情况不建议打开
@@ -72,12 +69,7 @@ module.exports = {
         minRatio: 0.8
       })
     ]
-    const pluginsDev = [
-      new ConsolePlugin({
-        filter: [], // 需要过滤的入口文件
-        enable: false // 发布代码前记得改回 false
-      })
-    ]
+    const pluginsDev = []
     if (process.env.NODE_ENV === 'production') { // 为生产环境修改配置...process.env.NODE_ENV !== 'development'
       config.plugins = [...config.plugins, ...pluginsPro, ...pluginsPublic]
     } else {

@@ -5,13 +5,11 @@ import App from './App.vue'
 import './registerServiceWorker'
 import routes from './router'
 import store from './store'
-import VueRouter from 'vue-router'
-import actions from "@/shared/actions"
-// import axios from './axios'
+import VueRouter, { Route } from 'vue-router'
 
 Vue.config.productionTip = false
 
-Vue.use(ElementUI);
+Vue.use(ElementUI)
 Vue.use(VueRouter)
 
 let instance: any = null
@@ -24,29 +22,30 @@ declare const window: Window & any
  * 两种情况：主应用生命周期钩子中运行 / 微应用单独启动时运行
  */
 function render (prop: any = {}) {
-  if (prop) {
-    // 注入 actions 实例
-    actions.setActions(prop);
-  }
-
   // 在 render 中创建 VueRouter，可以保证在卸载微应用时，移除 location 事件监听，防止事件污染
   router = new VueRouter({
+    mode: 'history',
     // 运行在主应用中时，添加路由命名空间 /savour
     base: window.__POWERED_BY_QIANKUN__ ? '/savour' : '/',
-    mode: 'history',
     routes
+  })
+
+  router.beforeEach((to: Route, from: Route, next: any) => {
+    console.info(to.path)
+    next()
   })
 
   // 挂载应用
   instance = new Vue({
-    store,
     router,
-    render: (h: (arg0: any) => any) => h(App)
+    store,
+    render: (h) => h(App)
   }).$mount('#app')
 }
 
 // 独立运行时，直接挂载应用
 if (!window.__POWERED_BY_QIANKUN__) {
+  console.info('独立运行')
   render()
 }
 
@@ -63,6 +62,11 @@ export async function bootstrap () {
  */
 export async function mount (props: any) {
   console.log('savour mount', props)
+  props.onGlobalStateChange((state: any, prev: any) => {
+    // state: 变更后的状态; prev 变更前的状态
+    store.commit('SET_USER_INFO', state)
+    console.log(state, prev)
+  }, true)
   render(props)
 }
 

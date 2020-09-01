@@ -1,5 +1,5 @@
-function emptyAction (...args: any[]) {
-  console.warn(`Current execute action is empty!${args}`)
+function emptyAction (state: any) {
+  console.warn(`Current execute action is empty!${state}`)
 }
 
 class Actions {
@@ -7,27 +7,27 @@ class Actions {
   actions = {
     onGlobalStateChange: emptyAction,
     setGlobalState: emptyAction
-  };
+  }
 
   /**
    * 设置 actions
    */
   setActions (actions: any) {
-    this.actions = actions
+    this.actions = Object.assign({}, actions)
   }
 
   /**
    * 在 globalState 发生改变时触发
    */
-  onGlobalStateChange (...args: any[]) {
-    return this.actions.onGlobalStateChange(...args)
+  onGlobalStateChange (state: any) {
+    return this.actions.onGlobalStateChange(state)
   }
 
   /**
    * 设置新的值
    */
-  setGlobalState (...args: any[]) {
-    return this.actions.setGlobalState(...args)
+  setGlobalState (state: any) {
+    return this.actions.setGlobalState(state)
   }
 }
 

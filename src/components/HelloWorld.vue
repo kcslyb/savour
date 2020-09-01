@@ -1,15 +1,18 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <h2>{{userName}}</h2>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Prop, Provide, Vue } from 'vue-property-decorator'
+import actions from '@/shared/actions'
 
 @Component
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string
+  @Provide() private userName = ''
   mounted () {
     this.dataInit()
   }
