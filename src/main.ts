@@ -64,7 +64,7 @@ export async function mount (props: any) {
   console.log('savour mount', props)
   props.onGlobalStateChange((state: any, prev: any) => {
     // state: 变更后的状态; prev 变更前的状态
-    store.commit('SET_USER_INFO', state)
+    store.commit('SET_USER', state.user)
     console.log(state, prev)
   }, true)
   render(props)
