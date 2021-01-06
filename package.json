@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@types/js-cookie": "^2.2.6",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "common": "git+https://kcslyb@github.com/kcslyb/common.git",
     "compression-webpack-plugin": "^4.0.0",
     "core-js": "^3.6.5",
